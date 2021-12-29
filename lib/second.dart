@@ -1,22 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'main.dart';
+import 'first.dart';
 import 'var.dart';
 
-class Next extends StatefulWidget {
-  const Next({Key? key}) : super(key: key);
+class Second extends StatefulWidget {
+  const Second({Key? key}) : super(key: key);
 
   @override
-  _NextState createState() => _NextState();
+  _SecondState createState() => _SecondState();
 }
 
-class _NextState extends State<Next> {
+class _SecondState extends State<Second> {
+  increaseImageSize() {
+    setState(() {
+      randomNumber += 10 + random.nextInt(20);
+      if (randomNumber > 700) {
+        randomNumber = 700;
+      }
+    });
+  }
+
+  decreaseImageSize() {
+    setState(() {
+      randomNumber -= 10 + random.nextInt(20);
+      if (randomNumber < 100) {
+        randomNumber = 100;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Insert Image Demo'),
+        title: const Text('Second screen'),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -38,7 +56,7 @@ class _NextState extends State<Next> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Next()),
+                  MaterialPageRoute(builder: (context) => const First()),
                 );
               },
             ),
@@ -49,30 +67,11 @@ class _NextState extends State<Next> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: Plus,
-          ),
-          FloatingActionButton(onPressed: Minus, child: Icon(Icons.remove))
+              child: const Icon(Icons.add), onPressed: increaseImageSize),
+          FloatingActionButton(
+              child: const Icon(Icons.remove), onPressed: decreaseImageSize)
         ],
       ),
     );
-  }
-
-  Plus() {
-    setState(() {
-      randomNumber += 10 + random.nextInt(20);
-      if (randomNumber > 700) {
-        randomNumber = 700;
-      }
-    });
-  }
-
-  Minus() {
-    setState(() {
-      randomNumber -= 10 + random.nextInt(20);
-      if (randomNumber < 100) {
-        randomNumber = 100;
-      }
-    });
   }
 }
