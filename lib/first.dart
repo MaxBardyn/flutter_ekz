@@ -42,7 +42,9 @@ class _FirstState extends State<First> {
                   width: firstImageStartSize + 100,
                   height: firstImageStartSize + 100,
                   decoration: BoxDecoration(
-                      shape: (firstImageStartSize - secondImageStartSize) <= 5 ? BoxShape.circle : BoxShape.rectangle,
+                      shape: (firstImageStartSize - secondImageStartSize).abs() <= 5
+                          ? BoxShape.circle
+                          : BoxShape.rectangle,
                       image: const DecorationImage(
                           fit: BoxFit.fill,
                           image: NetworkImage(
