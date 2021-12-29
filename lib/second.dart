@@ -14,19 +14,13 @@ class Second extends StatefulWidget {
 class _SecondState extends State<Second> {
   increaseImageSize() {
     setState(() {
-      randomNumber += 10 + random.nextInt(20);
-      if (randomNumber > 700) {
-        randomNumber = 700;
-      }
+      decreaseFirstIAndIncreaseSecondImage();
     });
   }
 
   decreaseImageSize() {
     setState(() {
-      randomNumber -= 10 + random.nextInt(20);
-      if (randomNumber < 100) {
-        randomNumber = 100;
-      }
+      increaseFirstAndDecreaseSecond();
     });
   }
 
@@ -45,11 +39,11 @@ class _SecondState extends State<Second> {
           children: <Widget>[
             InkWell(
               child: Container(
-                  width: -randomNumber + 800,
-                  height: -randomNumber + 800,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
+                  width: -secondImageStartSize + 800,
+                  height: -secondImageStartSize + 800,
+                  decoration: BoxDecoration(
+                      shape: (firstImageStartSize - secondImageStartSize) <= 20 ? BoxShape.circle : BoxShape.rectangle,
+                      image: const DecorationImage(
                           fit: BoxFit.fill,
                           image: NetworkImage(
                               "https://i.imgur.com/BoN9kdC.png")))),
